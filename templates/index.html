@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo Lists</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Todo Lists</h1>
+
+    <form action="/todolists/" method="post">
+        <input type="text" name="name" placeholder="Название списка" required>
+        <button type="submit">Создать список</button>
+    </form>
+
+    <ul>
+        {% for todolist in todolists %}
+        <li>
+            {{ todolist.name }}
+            <form action="/todolists/{{ todolist.id }}/delete" method="post" style="display: inline;">
+                <button type="submit">Удалить</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ todolist.name }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>{{ todolist.name }}</h1>
+    <a href="/">Назад к спискам</a>
+
+    <h2>Добавить задачу</h2>
+    <form action="/items/" method="post">
+        <input type="hidden" name="todolist_id" value="{{ todolist.id }}">
+        <input type="text" name="name" placeholder="Название задачи" required>
+        <textarea name="text" placeholder="Описание"></textarea>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <h2>Задачи</h2>
+    <ul>
+        {% for item in todolist.items %}
+        <li class="{{ 'done' if item.is_done else '' }}">
+            <strong>{{ item.name }}</strong>
+            <p>{{ item.text }}</p>
+            <form action="/items/{{ item.id }}/toggle" method="post" style="display: inline;">
+                <button type="submit">
+                    {{ '✓ Выполнено' if item.is_done else '☐ Не выполнено' }}
+                </button>
+            </form>
+            <form action="/items/{{ item.id }}/delete" method="post" style="display: inline;">
+                <button type="submit">Удалить</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
