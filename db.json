@@ -1,1 +1,15 @@
-{"todolists": {}, "items": {}}
+{
+  "todolists": {
+    "f579e032-ef2b-4fc8-a852-15793eadf57e": {
+      "id": "f579e032-ef2b-4fc8-a852-15793eadf57e",
+      "name": "список",
+      "items": [
+        {
+          "id": "02c8d5a7-9d06-45a3-a823-7c803de027e1",
+          "name": "задача1",
+          "text": "сделать что-то",
+          "is_done": true,
+          "deleted_at": null
+        }
+      ],
+      "deleted_at": 

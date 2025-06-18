@@ -6,33 +6,50 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <h1>{{ todolist.name }}</h1>
-    <a href="/">Назад к спискам</a>
+    <div class="header-container">
+        <h1>{{ todolist.name }}</h1>
+        <div class="progress-container">
+            <div class="progress-bar" style="width: {{ progress }}%"></div>
+            <span class="progress-text">{{ progress }}% выполнено</span>
+        </div>
+    </div>
 
-    <h2>Добавить задачу</h2>
-    <form action="/items/" method="post">
-        <input type="hidden" name="todolist_id" value="{{ todolist.id }}">
-        <input type="text" name="name" placeholder="Название задачи" required>
-        <textarea name="text" placeholder="Описание"></textarea>
-        <button type="submit">Добавить</button>
-    </form>
+    <a href="/" class="back-link">← Назад к спискам</a>
 
-    <h2>Задачи</h2>
-    <ul>
-        {% for item in todolist.items %}
-        <li class="{{ 'done' if item.is_done else '' }}">
-            <strong>{{ item.name }}</strong>
-            <p>{{ item.text }}</p>
-            <form action="/items/{{ item.id }}/toggle" method="post" style="display: inline;">
-                <button type="submit">
-                    {{ '✓ Выполнено' if item.is_done else '☐ Не выполнено' }}
-                </button>
-            </form>
-            <form action="/items/{{ item.id }}/delete" method="post" style="display: inline;">
-                <button type="submit">Удалить</button>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="add-item-form">
+        <h2>Добавить задачу</h2>
+        <form action="/items/" method="post">
+            <input type="hidden" name="todolist_id" value="{{ todolist.id }}">
+            <input type="text" name="name" placeholder="Название задачи" required>
+            <textarea name="text" placeholder="Описание"></textarea>
+            <button type="submit">Добавить задачу</button>
+        </form>
+    </div>
+
+    <div class="items-container">
+        <h2>Задачи ({{ todolist.total_items }})</h2>
+        <ul>
+            {% for item in todolist.items %}
+            <li class="item-card {{ 'done' if item.is_done else '' }}">
+                <div class="item-content">
+                    <h3>{{ item.name }}</h3>
+                    {% if item.text %}
+                    <p>{{ item.text }}</p>
+                    {% endif %}
+                </div>
+                <div class="item-actions">
+                    <form action="/items/{{ item.id }}/toggle" method="post">
+                        <button type="submit" class="toggle-btn">
+                            {{ '✓ Выполнено' if item.is_done else '☐ Не выполнено' }}
+                        </button>
+                    </form>
+                    <form action="/items/{{ item.id }}/delete" method="post">
+                        <button type="submit" class="delete-btn">Удалить</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

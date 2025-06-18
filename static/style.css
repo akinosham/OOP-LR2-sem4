@@ -1,4 +1,4 @@
-/* Основные стили */
+/* Общие стили */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     max-width: 800px;
@@ -6,10 +6,6 @@ body {
     padding: 20px;
     line-height: 1.6;
     color: #333;
-}
-
-h1, h2 {
-    color: #2c3e50;
 }
 
 a {
@@ -21,26 +17,137 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Списки */
-ul {
+/* Списки дел */
+.todolist-container {
     list-style-type: none;
     padding: 0;
+    margin-top: 20px;
 }
 
-li {
+.todolist-item {
     background: #f9f9f9;
-    margin: 10px 0;
+    margin: 15px 0;
     padding: 15px;
     border-radius: 5px;
     border-left: 4px solid #3498db;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todolist-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todolist-name {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.progress-badge {
+    background: #3498db;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8em;
+}
+
+/* Прогресс-бар */
+.progress-container {
+    width: 100%;
+    background: #e0e0e0;
+    border-radius: 5px;
+    margin: 10px 0;
+    position: relative;
+    height: 20px;
+}
+
+.progress-bar {
+    background: #27ae60;
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.3s;
+}
+
+.progress-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+/* Задачи */
+.items-container {
+    margin-top: 20px;
+}
+
+.item-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.item-card.done {
+    opacity: 0.7;
+    border-left: 4px solid #27ae60;
+}
+
+.item-content h3 {
+    margin: 0 0 5px 0;
+}
+
+.item-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Кнопки */
+button, .toggle-btn, .delete-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.toggle-btn {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.toggle-btn:hover {
+    background-color: #27ae60;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
 }
 
 /* Формы */
 form {
-    margin: 20px 0;
-    padding: 15px;
-    background: #f0f0f0;
-    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 input[type="text"],
@@ -58,57 +165,7 @@ textarea {
     resize: vertical;
 }
 
-/* Кнопки */
-button {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 14px;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-/* Состояния задач */
-.done {
-    opacity: 0.7;
-    border-left-color: #27ae60;
-}
-
-.done strong {
-    text-decoration: line-through;
-    color: #27ae60;
-}
-
-/* Формы внутри списка */
-li form {
+.back-link {
     display: inline-block;
-    background: none;
-    padding: 0;
-    margin: 5px 0 0 0;
-}
-
-/* Заголовок списка дел */
-.todolist-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Адаптивность */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-
-    button {
-        display: block;
-        width: 100%;
-        margin: 5px 0;
-    }
+    margin-bottom: 20px;
 }
